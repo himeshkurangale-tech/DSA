@@ -1,0 +1,61 @@
+
+LeetCode 26 – Remove Duplicates from Sorted Array
+
+Topic: Arrays | Two Pointers
+
+1. PROBLEM STATEMENT
+
+Given a sorted integer array, remove duplicates in-place so that each unique element appears only once. Return the number of unique elements (k).
+
+2. APPROACH – TWO POINTERS
+
+- Use j to traverse the array from index 1.
+- Use k to maintain the position where the next unique element should be stored.
+- Initialize k = 1 because the first element is always unique.
+- Compare nums[j] with nums[j-1].
+- If they are different, we found a new unique element.
+- Store it at nums[k] and increment k.
+- If they are equal, skip the duplicate.
+- Finally, return k.
+
+3. DRY RUN
+
+Input: [1, 1, 2, 2, 3]
+
+j | Comparison | Action  | k
+1 | 1 == 1     | Skip    | 1
+2 | 2 != 1     | Store 2 | 2
+3 | 2 == 2     | Skip    | 2
+4 | 3 != 2     | Store 3 | 3
+
+Output: [1, 2, 3, _, _]
+Return: k = 3
+
+4. COMPLEXITY ANALYSIS
+
+Time Complexity: O(n)
+Traverses the array once.
+
+Space Complexity: O(1)
+Modifies the original array without using extra space.
+
+5. KEY INTERVIEW POINTS
+
+1. Why start k = 1?
+   Because the first element is always unique.
+
+2. Why start j = 1?
+   Because index 0 is already considered unique.
+
+3. Why is the array sorted important?
+   Duplicates are adjacent.
+
+4. Why no extra array?
+   The problem requires in-place modification.
+
+5. What does k represent?
+   The total number of unique elements.
+
+CORE LOGIC
+
+Compare adjacent elements. If different, place the new element at index k and increment k.
