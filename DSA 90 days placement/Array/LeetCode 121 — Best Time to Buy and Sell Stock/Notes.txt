@@ -1,0 +1,73 @@
+
+LeetCode 121 – Best Time to Buy and Sell Stock
+
+Topic: Arrays | Greedy
+
+1. PROBLEM STATEMENT
+
+Given an array prices where prices[i] represents the stock price on the ith day, find the maximum profit by buying on one day and selling on a future day.
+
+If no profit is possible, return 0.
+
+2. APPROACH – GREEDY (ONE PASS)
+
+- Initialize minPrice = Integer.MAX_VALUE to track the minimum buying price.
+- Initialize maxProfit = 0 to track maximum profit.
+- Traverse the array using an enhanced for loop.
+- If the current price is smaller than minPrice, update minPrice.
+- Calculate profit = price - minPrice.
+- If the calculated profit is greater than maxProfit, update maxProfit.
+- Continue until all prices are checked.
+- Finally, return maxProfit.
+
+3. DRY RUN
+
+Input: [7, 1, 5, 3, 6, 4]
+
+Price | minPrice | Profit | maxProfit
+--------------------------------------
+  7   |    7     |   0    |     0
+  1   |    1     |   0    |     0
+  5   |    1     |   4    |     4
+  3   |    1     |   2    |     4
+  6   |    1     |   5    |     5
+  4   |    1     |   3    |     5
+
+Output: 5
+
+Buy at price = 1
+Sell at price = 6
+
+Maximum Profit = 6 - 1 = 5
+
+4. COMPLEXITY ANALYSIS
+
+Time Complexity: O(n)
+Traverses the array once.
+
+Space Complexity: O(1)
+Uses only two variables without extra space.
+
+5. KEY INTERVIEW POINTS
+
+1. Why initialize minPrice = Integer.MAX_VALUE?
+To ensure the first price automatically becomes the minimum.
+
+2. Why initialize maxProfit = 0?
+Because if no profitable transaction is possible, the answer should be 0.
+
+3. Why use Greedy Approach?
+We maintain the lowest buying price seen so far and calculate the best selling profit.
+
+4. Why update minPrice before calculating profit?
+To maintain the minimum price available up to the current day.
+
+5. Can we buy and sell on the same day?
+The algorithm allows zero profit, but the selling day must not precede the buying day.
+
+6. Why is the solution O(n)?
+Because we traverse the array only once.
+
+CORE LOGIC
+
+Track the minimum price seen so far. For every current price, calculate the possible profit and update maxProfit if it is higher.
