@@ -1,0 +1,76 @@
+LeetCode 122 – Best Time to Buy and Sell Stock II
+
+Topic: Arrays | Greedy
+
+1. PROBLEM STATEMENT
+
+Given an array prices, where prices[i] represents the stock price on the ith day, find the maximum profit by buying and selling stocks multiple times.
+
+You can buy and sell on the same day, but you must sell before buying again.
+
+Return the maximum total profit.
+
+2. APPROACH – GREEDY (ONE PASS)
+
+- Initialize maxProfit = 0 to track total profit.
+- Traverse the array using a for loop starting from index 1.
+- Compare the current price prices[i] with the previous price prices[i-1].
+- If the current price is greater than the previous price, profit is possible.
+- Calculate the difference between current and previous prices.
+- Add this profit to maxProfit.
+- If the current price is smaller or equal, skip it.
+- Finally, return maxProfit.
+
+3. DRY RUN
+
+Input: [7, 1, 5, 3, 6, 4]
+
+i    Previous    Current    Action    maxProfit
+1       7           1        Skip          0
+2       1           5        Add 4         4
+3       5           3        Skip          4
+4       3           6        Add 3         7
+5       6           4        Skip          7
+
+Output: 7
+
+Transactions:
+
+- Buy at 1, sell at 5 → Profit = 4
+- Buy at 3, sell at 6 → Profit = 3
+
+Maximum Total Profit = 4 + 3 = 7
+
+4. COMPLEXITY ANALYSIS
+
+Time Complexity: O(n)
+
+Traverses the array once.
+
+Space Complexity: O(1)
+
+Uses only one variable without extra space.
+
+5. KEY INTERVIEW POINTS
+
+1. Why initialize maxProfit = 0?
+Because if no profit is possible, the answer should be 0.
+
+2. Why start the loop from i = 1?
+Because we compare the current price with the previous price.
+
+3. Why check prices[i] > prices[i-1]?
+To identify every profitable price increase.
+
+4. Why add every positive difference?
+Because multiple buying and selling transactions are allowed.
+
+5. Why use Greedy Approach?
+We collect every possible positive price difference to maximize total profit.
+
+6. What is the difference between LC 121 and LC 122?
+LC 121 allows only one transaction, whereas LC 122 allows multiple transactions.
+
+6. CORE LOGIC
+
+Array mein current price ko pichhle price se compare karo; agar current price zyada hai toh difference ko total profit mein add karo, warna skip karo; end mein total profit return karo.
