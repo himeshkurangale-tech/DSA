@@ -1,0 +1,148 @@
+LeetCode 189 – Rotate Array
+
+Topic: Arrays | Cyclic Replacement
+
+
+1. PROBLEM STATEMENT
+
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+
+The rotation should be performed in-place without using extra space.
+
+
+2. APPROACH – CYCLIC REPLACEMENT
+
+- Store the array length in n.
+- If the array is empty, return.
+- Calculate k = k % n to handle rotations greater than the array length.
+- If k = 0, no rotation is required, so return.
+- Initialize count = 0 to track the total number of elements moved.
+- Start traversing the array using i, as long as count < n.
+- Store the starting index i in idx.
+- Store the current element in a temporary variable curr.
+- Calculate the next index using (idx + k) % n.
+- Store the element at the next index in next before overwriting it.
+- Place curr at the next index.
+- Update curr = next to move the displaced element further.
+- Update idx = (idx + k) % n.
+- Increment count after every element movement.
+- Continue the cycle until idx reaches the starting index i again.
+- If count < n, start another cycle from the next unvisited index.
+- Repeat until all n elements have been moved.
+
+
+3. DRY RUN
+
+Input:
+
+nums = [1, 2, 3, 4, 5, 6, 7]
+k = 3
+
+Cycle 1: Starting index = 0
+
+Step 1:
+Current Index = 0
+Next Index = 3
+Element Moved: 1 → index 3
+
+Step 2:
+Current Index = 3
+Next Index = 6
+Element Moved: 4 → index 6
+
+Step 3:
+Current Index = 6
+Next Index = 2
+Element Moved: 7 → index 2
+
+Step 4:
+Current Index = 2
+Next Index = 5
+Element Moved: 3 → index 5
+
+Step 5:
+Current Index = 5
+Next Index = 1
+Element Moved: 6 → index 1
+
+Step 6:
+Current Index = 1
+Next Index = 4
+Element Moved: 2 → index 4
+
+Step 7:
+Current Index = 4
+Next Index = 0
+Element Moved: 5 → index 0
+
+After completing the cycle:
+
+[5, 6, 7, 1, 2, 3, 4]
+
+All 7 elements have been moved, so count = 7.
+
+No additional cycle is required.
+
+Output:
+
+[5, 6, 7, 1, 2, 3, 4]
+
+
+4. COMPLEXITY ANALYSIS
+
+Time Complexity: O(n)
+
+- Every element is moved exactly once.
+- All cycles together visit all n elements.
+
+Space Complexity: O(1)
+
+- The array is modified in-place.
+- Only a constant number of extra variables are used (count, idx, curr, next).
+- No additional array or data structure is required.
+
+
+5. KEY INTERVIEW POINTS
+
+1. Why use k = k % n?
+
+Because rotating an array n times brings it back to its original position.
+
+2. Why use (idx + k) % n?
+
+To calculate the next index while ensuring that the index stays within the array boundaries.
+
+3. Why use a temporary variable curr?
+
+To preserve the current element before replacing the next position.
+
+4. Why use another variable next?
+
+To save the element that would otherwise be overwritten when curr is placed at the next index.
+
+5. Why use count?
+
+To track the total number of elements moved across all cycles and ensure that every element is moved exactly once.
+
+6. Why can multiple cycles be required?
+
+Depending on the values of n and k, one cycle may not visit every index. Therefore, another cycle is started from the next unvisited index.
+
+7. Why use cyclic replacement?
+
+It rotates the array in-place without requiring an additional array.
+
+8. What is the difference between O(n) time and O(1) space?
+
+Every element is visited, but only a constant number of extra variables are used.
+
+
+6. CORE LOGIC
+
+Pehle array ki length n store karo aur k = k % n calculate karo. Agar array empty hai ya k = 0 hai, toh return karo.
+
+Uske baad count = 0 initialize karo. Har cycle mein starting index i ko idx mein store karo aur us position ke element ko curr mein rakho.
+
+Phir (idx + k) % n se next index calculate karo. Us index ka element next mein save karo aur curr ko next index par place karo. Uske baad next ko curr bana do, idx update karo aur count increase karo.
+
+Jab cycle wapas starting index par pahunch jaye, toh agar count < n hai, next unvisited index se nayi cycle start karo. Ye process tab tak repeat karo jab tak saare n elements move na ho jayein.
